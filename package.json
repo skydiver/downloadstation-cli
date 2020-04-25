@@ -1,12 +1,12 @@
 {
-  "name": "node-cli-template",
+  "name": "downloadstation-cli",
+  "description": "Manage your Synology Download Station from cli",
   "version": "1.0.0",
-  "description": "Starter template for your node cli applications",
   "author": "Martín M.",
   "license": "MIT",
   "homepage": "https://github.com/skydiver/",
   "bin": {
-    "your_command": "./bin/run.js"
+    "sds": "./bin/run.js"
   },
   "dependencies": {
     "chalk": "^4.0.0",
@@ -17,6 +17,7 @@
     "inquirer": "^7.1.0",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
-    "update-notifier": "^4.1.0"
+    "update-notifier": "^4.1.0",
+    "validator": "^13.0.0"
   }
 }
