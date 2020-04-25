@@ -1,0 +1,22 @@
+{
+  "name": "node-cli-template",
+  "version": "1.0.0",
+  "description": "Starter template for your node cli applications",
+  "author": "Martín M.",
+  "license": "MIT",
+  "homepage": "https://github.com/skydiver/",
+  "bin": {
+    "your_command": "./bin/run.js"
+  },
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "cli-table": "^0.3.1",
+    "commander": "^5.1.0",
+    "configstore": "^5.0.1",
+    "figlet": "^1.3.0",
+    "inquirer": "^7.1.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "update-notifier": "^4.1.0"
+  }
+}
