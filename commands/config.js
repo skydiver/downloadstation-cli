@@ -50,6 +50,7 @@ const setup = async () => {
 
   const config = new Configstore(packageJson.name);
   config.set('url', answers.url);
+  config.set('username', answers.username);
 
   keytar.setPassword('downloadstation-cli', answers.username, answers.password);
 };
