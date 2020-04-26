@@ -4,10 +4,20 @@ const pretty = require('prettysize');
 
 const ConfigStore = require('../lib/config-store');
 const Synology = require('../lib/synology');
+const { getCommandName } = require('../lib/helpers');
 
 const list = async () => {
   const configStore = new ConfigStore();
-  const { url, username, token, password } = await configStore.getAll();
+  const credentials = await configStore.getCredentials();
+
+  if (!credentials) {
+    const command = chalk.underline.bold(`${getCommandName()} config`);
+    const message = `Configuration missing. Run ${command} and try again.`;
+    console.log(chalk.white.bgRed(message));
+    process.exit();
+  }
+
+  const { url, username, token, password } = credentials;
 
   const synology = new Synology({ url, username, password, sid: token });
 

@@ -52,7 +52,7 @@ const setup = async () => {
   config.set('url', answers.url);
   config.set('username', answers.username);
 
-  keytar.setPassword('downloadstation-cli', answers.username, answers.password);
+  keytar.setPassword(packageJson.name, answers.username, answers.password);
 };
 
 module.exports = { setup };
