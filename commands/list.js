@@ -1,19 +1,15 @@
-const Configstore = require('configstore');
-const keytar = require('keytar');
-
-const packageJson = require('../package.json');
+const ConfigStore = require('../lib/config-store');
 const Synology = require('../lib/synology');
 
 const list = async () => {
-  const config = new Configstore(packageJson.name);
-  const { url, username, token } = config.all;
-  const password = await keytar.getPassword('downloadstation-cli', username);
+  const configStore = new ConfigStore();
+  const { url, username, token, password } = await configStore.getAll();
 
   const synology = new Synology({ url, username, password });
 
   if (!token) {
     const sid = await synology.login();
-    config.set('token', sid);
+    configStore.set('token', sid);
   }
 
   // check credentials
@@ -22,7 +18,7 @@ const list = async () => {
   // wrong credentials? login again
   if (info.success !== true) {
     const sid = await synology.login();
-    config.set('token', sid);
+    configStore.set('token', sid);
   }
 
   const tasks = await synology.tasks();
