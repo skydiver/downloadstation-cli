@@ -1,4 +1,5 @@
 const Table = require('cli-table');
+const chalk = require('chalk');
 const pretty = require('prettysize');
 
 const ConfigStore = require('../lib/config-store');
@@ -28,6 +29,11 @@ const list = async () => {
   const tasksResponse = await synology.tasks();
   const { tasks } = tasksResponse.data;
   const ids = tasks.map(task => task.id);
+
+  if (ids.length === 0) {
+    console.log(chalk.green('No downloads tasks found'));
+    process.exit();
+  }
 
   // get tasks details
   const tasksInfo = await synology.tasksInfo(ids.join(','));
