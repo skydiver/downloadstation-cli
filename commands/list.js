@@ -16,6 +16,15 @@ const list = async () => {
     config.set('token', sid);
   }
 
+  // check credentials
+  const info = await synology.info();
+
+  // wrong credentials? login again
+  if (info.success !== true) {
+    const sid = await synology.login();
+    config.set('token', sid);
+  }
+
   const tasks = await synology.tasks();
 
   console.log(tasks);
