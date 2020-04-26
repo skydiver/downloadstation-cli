@@ -24,17 +24,29 @@ const list = async () => {
     configStore.set('token', sid);
   }
 
+  // get list of tasks
   const tasksResponse = await synology.tasks();
   const { tasks } = tasksResponse.data;
-
   const ids = tasks.map(task => task.id);
 
+  // get tasks details
   const tasksInfo = await synology.tasksInfo(ids.join(','));
   const tasksDetails = tasksInfo.data.tasks;
 
+  const width = process.stdout.columns - 67;
+
+  // build output table
   const table = new Table({
     style: { head: ['green'] },
-    head: ['File name', 'File size', 'Downloaded', 'Progress', 'Type'],
+    colWidths: [width, 12, 12, 12, 12, 12],
+    head: [
+      'File name',
+      'File size',
+      'Downloaded',
+      'Progress',
+      'Status',
+      'Type',
+    ],
   });
 
   tasksDetails.forEach(task => {
@@ -43,7 +55,9 @@ const list = async () => {
     const { size_downloaded } = task.additional.transfer;
     const downloaded = pretty(size_downloaded, { places: 2 });
 
-    table.push([task.title, size, downloaded, status, task.type]);
+    const progress = `${((size_downloaded * 100) / task.size).toFixed(1)}%`;
+
+    table.push([task.title, size, downloaded, progress, status, task.type]);
   });
 
   console.log(table.toString());
