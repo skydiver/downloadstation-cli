@@ -1,29 +1,12 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 
-const ConfigStore = require('../lib/config-store');
-const Synology = require('../lib/synology');
+const initialize = require('./init');
 const { isUrl } = require('../lib/validation');
 
 const create = async () => {
-  const configStore = new ConfigStore();
-  const { url, username, token, password } = await configStore.getAll();
-
-  const synology = new Synology({ url, username, password, sid: token });
-
-  if (!token) {
-    const sid = await synology.login();
-    configStore.set('token', sid);
-  }
-
-  // check credentials
-  const info = await synology.info();
-
-  // wrong credentials? login again
-  if (info.success !== true) {
-    const sid = await synology.login();
-    configStore.set('token', sid);
-  }
+  // initialize synology connection
+  const synology = await initialize();
 
   // get download url
   const answers = await inquirer.prompt([

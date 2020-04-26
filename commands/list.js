@@ -2,38 +2,11 @@ const Table = require('cli-table');
 const chalk = require('chalk');
 const pretty = require('prettysize');
 
-const ConfigStore = require('../lib/config-store');
-const Synology = require('../lib/synology');
-const { getCommandName } = require('../lib/helpers');
+const initialize = require('./init');
 
 const list = async () => {
-  const configStore = new ConfigStore();
-  const credentials = await configStore.getCredentials();
-
-  if (!credentials) {
-    const command = chalk.underline.bold(`${getCommandName()} config`);
-    const message = `Configuration missing. Run ${command} and try again.`;
-    console.log(chalk.white.bgRed(message));
-    process.exit();
-  }
-
-  const { url, username, token, password } = credentials;
-
-  const synology = new Synology({ url, username, password, sid: token });
-
-  if (!token) {
-    const sid = await synology.login();
-    configStore.set('token', sid);
-  }
-
-  // check credentials
-  const info = await synology.info();
-
-  // wrong credentials? login again
-  if (info.success !== true) {
-    const sid = await synology.login();
-    configStore.set('token', sid);
-  }
+  // initialize synology connection
+  const synology = await initialize();
 
   // get list of tasks
   const tasksResponse = await synology.tasks();
