@@ -11,16 +11,15 @@ const { list } = require('../commands/list');
 const { create } = require('../commands/add');
 const { setup } = require('../commands/config');
 
-const preface = `Synology Download Station / CLI Manager ${chalk.green(
-  pkg.version
-)}`;
-cli.preface(preface);
+const name = 'Synology Download Station / CLI Manager';
+const version = chalk.green(pkg.version);
 
-const usagePrefix = chalk.yellow('Usage:');
+cli.preface(`${name} ${version}`);
 
 cli.usage({
-  prefix: `${usagePrefix}\n  $0`,
+  prefix: `${chalk.yellow('Usage:')}\n  $0`,
   commandPlaceholder: 'command',
+  optionsPlaceholder: false,
 });
 
 cli.style({
@@ -39,9 +38,10 @@ cli
     desc: 'Display this help message',
     implicitCommand: false,
   })
-  .version('-V, --version', {
+  .version('-v, --version', {
     desc: 'Display this application version',
     implicitCommand: false,
+    version,
   });
 
 cli
