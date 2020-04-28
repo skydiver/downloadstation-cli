@@ -18,9 +18,7 @@
     "cli",
     "console"
   ],
-  "bin": {
-    "sds": "./bin/sds.js"
-  },
+  "bin": "bin/sds.js",
   "dependencies": {
     "chalk": "^4.0.0",
     "cli-table": "^0.3.1",
