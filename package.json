@@ -1,7 +1,7 @@
 {
   "name": "downloadstation-cli",
   "description": "Manage your Synology Download Station from your terminal",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Martín M.",
   "license": "MIT",
   "repository": {
@@ -18,19 +18,16 @@
     "cli",
     "console"
   ],
-  "bin": {
-    "sds": "./bin/sds.js"
-  },
+  "bin": "bin/sds.js",
   "dependencies": {
     "chalk": "^4.0.0",
     "cli-table": "^0.3.1",
-    "commander": "^5.1.0",
     "configstore": "^5.0.1",
-    "figlet": "^1.3.0",
     "inquirer": "^7.1.0",
     "keytar": "^5.5.0",
     "node-fetch": "^2.6.0",
     "prettysize": "^2.0.0",
+    "sywac": "^1.3.0",
     "update-notifier": "^4.1.0",
     "validator": "^13.0.0"
   }
