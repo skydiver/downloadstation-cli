@@ -1,10 +1,13 @@
 const Table = require('cli-table');
 const chalk = require('chalk');
 const pretty = require('prettysize');
+const ora = require('ora');
 
 const initialize = require('./init');
 
 const list = async () => {
+  const spinner = ora('Retrieving tasks ...').start();
+
   // initialize synology connection
   const synology = await initialize();
 
@@ -14,6 +17,7 @@ const list = async () => {
   const ids = tasks.map(task => task.id);
 
   if (ids.length === 0) {
+    spinner.stop();
     console.log(chalk.green('No downloads tasks found'));
     process.exit();
   }
@@ -48,6 +52,8 @@ const list = async () => {
 
     table.push([task.title, size, downloaded, progress, status, task.type]);
   });
+
+  spinner.stop();
 
   console.log(table.toString());
 };
