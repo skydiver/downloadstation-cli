@@ -46,7 +46,7 @@ cli
 
 cli
   .command('list', { desc: 'List your tasks', run: list })
-  .command('new', { desc: 'Add new download task', run: create })
+  .command('add', { desc: 'Add new download task', run: create })
   .command('config', {
     desc: 'Setup your Synology Download Station',
     run: setup,
@@ -57,8 +57,7 @@ cli.showHelpByDefault().outputSettings({ maxWidth: 150 });
 module.exports = cli;
 
 async function main() {
-  const argv = await cli.parseAndExit();
-  console.log(JSON.stringify(argv, null, 2));
+  await cli.parseAndExit();
 }
 
 if (require.main === module) main();
