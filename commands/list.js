@@ -3,6 +3,9 @@ const chalk = require('chalk');
 const pretty = require('prettysize');
 const ora = require('ora');
 
+const { handleError } = require('../lib/helpers');
+const { getError } = require('../lib/error-codes');
+
 const initialize = require('./init');
 
 const list = async () => {
@@ -16,6 +19,7 @@ const list = async () => {
   const { tasks } = tasksResponse.data;
   const ids = tasks.map(task => task.id);
 
+  // no tasks found, terminate here
   if (ids.length === 0) {
     spinner.stop();
     console.log(chalk.green('No downloads tasks found'));
@@ -24,6 +28,14 @@ const list = async () => {
 
   // get tasks details
   const tasksInfo = await synology.tasksInfo(ids.join(','));
+
+  // check for valid response
+  if (tasksInfo.success === false) {
+    spinner.stop();
+    const errorMessage = getError(tasksInfo.error.code);
+    handleError(errorMessage);
+  }
+
   const tasksDetails = tasksInfo.data.tasks;
 
   const width = process.stdout.columns - 70;
