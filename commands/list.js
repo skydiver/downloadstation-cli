@@ -26,12 +26,12 @@ const list = async () => {
   const tasksInfo = await synology.tasksInfo(ids.join(','));
   const tasksDetails = tasksInfo.data.tasks;
 
-  const width = process.stdout.columns - 67;
+  const width = process.stdout.columns - 70;
 
   // build output table
   const table = new Table({
     style: { head: ['green'] },
-    colWidths: [width, 12, 12, 12, 12, 12],
+    colWidths: [width, 12, 12, 12, 13, 12],
     head: [
       'File name',
       'File size',
