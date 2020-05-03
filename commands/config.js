@@ -48,7 +48,7 @@ const setup = async () => {
   ]);
 
   const config = new Configstore(packageJson.name);
-  config.set('url', answers.url);
+  config.set('url', answers.url.replace(/\/$/, ''));
   config.set('username', answers.username);
   config.set('password', answers.password);
 };
