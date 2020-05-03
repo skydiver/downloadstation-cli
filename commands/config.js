@@ -1,7 +1,6 @@
 const inquirer = require('inquirer');
 const validator = require('validator');
 const Configstore = require('configstore');
-const keytar = require('keytar');
 
 const packageJson = require('../package.json');
 
@@ -51,8 +50,7 @@ const setup = async () => {
   const config = new Configstore(packageJson.name);
   config.set('url', answers.url);
   config.set('username', answers.username);
-
-  keytar.setPassword(packageJson.name, answers.username, answers.password);
+  config.set('password', answers.password);
 };
 
 module.exports = { setup };

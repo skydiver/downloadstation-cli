@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
+const ora = require('ora');
 
 const initialize = require('./init');
 const { isUrl } = require('../lib/validation');
@@ -18,8 +19,12 @@ const create = async () => {
     },
   ]);
 
+  const spinner = ora('Adding new task ...').start();
+
   // create new task
   const task = await synology.create(answers.url);
+
+  spinner.stop();
 
   if (task.success === true) {
     console.log(chalk.green('Download task successfully created'));
