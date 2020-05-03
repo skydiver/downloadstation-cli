@@ -26,7 +26,6 @@
     "cli-table": "^0.3.1",
     "configstore": "^5.0.1",
     "inquirer": "^7.1.0",
-    "keytar": "^5.5.0",
     "node-fetch": "^2.6.0",
     "ora": "^4.0.4",
     "prettysize": "^2.0.0",
