@@ -9,6 +9,7 @@ updateNotifier({ pkg }).notify({ isGlobal: true });
 
 const { list } = require('../commands/list');
 const { create } = require('../commands/add');
+const { remove } = require('../commands/remove');
 const { setup } = require('../commands/config');
 
 const name = 'Synology Download Station / CLI Manager';
@@ -47,6 +48,7 @@ cli
 cli
   .command('list', { desc: 'List your tasks', run: list })
   .command('add', { desc: 'Add new download task', run: create })
+  .command('remove', { desc: 'Remove download tasks', run: remove })
   .command('config', {
     desc: 'Setup your Synology Download Station',
     run: setup,
