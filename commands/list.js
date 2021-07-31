@@ -17,7 +17,7 @@ const list = async () => {
   // get list of tasks
   const tasksResponse = await synology.tasks();
   const { tasks } = tasksResponse.data;
-  const ids = tasks.map(task => task.id);
+  const ids = tasks.map((task) => task.id);
 
   // no tasks found, terminate here
   if (ids.length === 0) {
@@ -54,8 +54,8 @@ const list = async () => {
     ],
   });
 
-  tasksDetails.forEach(task => {
-    const { status } = tasks.find(t => t.id === task.id);
+  tasksDetails.forEach((task) => {
+    const { status } = tasks.find((t) => t.id === task.id);
     const size = pretty(task.size, { places: 2 });
     const { size_downloaded } = task.additional.transfer;
     const downloaded = pretty(size_downloaded, { places: 2 });

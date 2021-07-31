@@ -1,6 +1,6 @@
 {
   "name": "downloadstation-cli",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Manage your Synology Download Station from your terminal",
   "keywords": [
     "synology",
