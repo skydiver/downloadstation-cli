@@ -1,16 +1,7 @@
 {
   "name": "downloadstation-cli",
+  "version": "0.5.1",
   "description": "Manage your Synology Download Station from your terminal",
-  "version": "0.5.0",
-  "author": "Martín M.",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/skydiver/downloadstation-cli.git"
-  },
-  "bugs": {
-    "url": "https://github.com/skydiver/downloadstation-cli/issues"
-  },
   "keywords": [
     "synology",
     "diskstation",
@@ -18,6 +9,15 @@
     "cli",
     "console"
   ],
+  "bugs": {
+    "url": "https://github.com/skydiver/downloadstation-cli/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skydiver/downloadstation-cli.git"
+  },
+  "license": "MIT",
+  "author": "Martín M.",
   "bin": {
     "sds": "./bin/sds.js"
   },
