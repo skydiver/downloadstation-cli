@@ -23,11 +23,11 @@ cli.usage({
 });
 
 cli.style({
-  group: str => {
+  group: (str) => {
     const string = str === 'Commands:' ? 'Available commands:' : str;
     return chalk.yellow(string);
   },
-  flags: str => chalk.green(str),
+  flags: (str) => chalk.green(str),
   hints: () => null,
 });
 

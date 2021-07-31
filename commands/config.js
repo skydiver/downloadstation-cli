@@ -4,7 +4,7 @@ const Configstore = require('configstore');
 
 const packageJson = require('../package.json');
 
-const isUrl = value => {
+const isUrl = (value) => {
   const isValid = validator.isURL(value, {
     require_protocol: true,
     require_valid_protocol: true,
@@ -18,7 +18,7 @@ const isUrl = value => {
   return 'Invalid URL';
 };
 
-const isRequired = value => {
+const isRequired = (value) => {
   if (value !== '') {
     return true;
   }
